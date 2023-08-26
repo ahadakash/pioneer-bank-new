@@ -75,14 +75,10 @@
         depositt.addEventListener("click", function () {
             const deposit = document.getElementById("depositAmount").value;
             const depositAmount = parseFloat(deposit);
-            const currentD = document.getElementById("currentDeposit").innerText;
-            const currentDeposit = parseFloat(currentD);
+            const currentDeposit = numberConvert("currentDeposit");
             var currentD2 = currentDeposit + depositAmount;
 
-            var current = document.getElementById("currentBalance").innerText;
-            var currentBalance = parseFloat(current);
-            current = currentBalance + depositAmount;
-            document.getElementById("currentBalance").innerText = current;
+            balance("currentBalance", depositAmount);
 
             document.getElementById("currentDeposit").innerText = currentD2;
             document.getElementById("depositAmount").value = "";
@@ -92,20 +88,30 @@
         const withdraw = document.getElementById("withdraw-btn");
         withdraw.addEventListener("click", function () {
             const withdraw = document.getElementById("withdrawAmount").value;
-            console.log(withdraw);
             const withdrawAmount = parseFloat(withdraw);
-            const currentW = document.getElementById("currentWithdraw").innerText;
-            const currentW2 = parseFloat(currentW);
+            const currentW2 = numberConvert("currentWithdraw");
             var currentW3 = withdrawAmount + currentW2;
 
-            var current = document.getElementById("currentBalance").innerText;
-            var currentBalance = parseFloat(current);
-            current = currentBalance - withdrawAmount;
-            document.getElementById("currentBalance").innerText = current;
+            balance("currentBalance", -1 * withdrawAmount);
 
             document.getElementById("currentWithdraw").innerText = currentW3;
             document.getElementById("withdrawAmount").value = "";
         })
+
+        //functions
+        function numberConvert(id) {
+            const number = document.getElementById(id).innerText;
+            const numberConvert = parseFloat(number);
+            return numberConvert;
+        }
+
+        function balance(id, number) {
+            var balance = document.getElementById(id).innerText;
+            var newBalance = parseFloat(balance);
+            current = newBalance + number;
+            document.getElementById(id).innerText = current;
+        }
+
     </script>
 
 </body>
